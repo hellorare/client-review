@@ -1,0 +1,236 @@
+// ==========================================================================
+//
+//	Drop Down Menu
+//
+// ==========================================================================
+
+
+// --------------------------------------------------------------------------
+//	 Toggle Button
+// --------------------------------------------------------------------------
+
+#menu-toggle {
+	position: absolute;
+	display: none;
+	top: $gap;
+	right: $gap;
+	padding: 5px;
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 1;
+	text-align: left;
+	color: #fafafa;
+	background: #333;
+	cursor: pointer;
+	z-index: 100;
+	transform: translate3d(0,0,0);
+	transform-style: preserve-3d;
+	@include backface-visibility(hidden);
+}
+
+
+// --------------------------------------------------------------------------
+//	 Full width
+// --------------------------------------------------------------------------
+
+
+#nav-wrapper {
+
+	.menu-header {
+		@include center;
+	}
+}
+
+#main-nav .menu {
+	@include span-columns(12);
+	padding: 0;
+	margin: 0;
+
+	li {
+		position: relative;
+		float: left;
+		margin-right: 1em;
+		list-style: none;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&.current-menu-item, &.current-menu-ancestor, &.current-menu-parent {
+			background: #fafafa;
+		}
+
+		a {
+			display: block;
+			padding: 0.2em 0.5em;
+		}
+
+		&.active a, &:hover a {
+			background: #fafafa;
+		}
+
+		&.menu-parent > a:after {
+			content: '∨';
+			color: $base-link-color;
+			font-size: 1em;
+			margin-left: 5px;
+			position: relative;
+			top: -1px;
+		}
+
+		.sub-menu {
+			display: none;
+			padding: 0;
+			position: absolute;
+			background: #fafafa;
+			z-index: 1000;
+
+			li {
+				float: none;
+				position: relative;
+				margin-right: 0;
+
+				&.menu-parent > a:after {
+					position: absolute;
+					right: 9px;
+					top: 3px;
+				}
+
+				a {
+					width: 9em;
+				}
+			}
+			.sub-menu {
+				display: none;
+				left: 100%;
+				position: absolute;
+				top: 0;
+			}
+		}
+	}
+}
+
+
+// --------------------------------------------------------------------------
+//	 Collapsed
+// --------------------------------------------------------------------------
+
+@include media($mobile-down) {
+
+	#menu-toggle {
+		display: block;
+	}
+
+	#nav-wrapper {
+		z-index: 99;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 0;
+		background: #333;
+
+		.menu-header {
+			padding: 0;
+			max-height: 0;
+			max-width: none;
+			overflow: hidden;
+			@include transition(all 600ms ease-in-out);
+
+			#main-nav {
+				padding: $gap 0;
+				width: 320px;
+				font-size: 1em;
+				@include clearfix;
+			}
+		}
+
+		@include backface-visibility(hidden);
+	}
+
+	.js-nav #nav-wrapper .menu-header {
+		 max-height: 400px;
+	}
+
+	#main-nav .menu {
+		display: inline;
+		float: left;
+		width: 100%;
+		margin: 0;
+		float: left;
+		padding: 0;
+		text-align: center;
+
+		li {
+			float: none;
+			display: block;
+			text-align: left;
+			margin-right: 0;
+
+			&:hover, &.current-menu-item, &.current-menu-parent {
+				background: rgba(255, 255, 255, 0.1);
+
+				a {
+
+				}
+			}
+
+			a {
+				padding: 0.5em 0.5em 0.5em 1.5em;
+				color: white;
+			}
+
+			&.menu-parent > a:after {
+				position: absolute;
+				right: 1em;
+				top: 0.5em;
+				color: white;
+			}
+
+			&.active a, &:hover a {
+				background: rgba(255, 255, 255, 0.1);
+			}
+
+			.sub-menu {
+				position: relative;
+				display: none;
+				max-width: 100%;
+				zoom:1;
+				background: rgba(255, 255, 255, 0.1);
+
+				li {
+					float: none;
+					position: relative;
+					display: block !important;
+					opacity: 1 !important;
+					zoom:1;
+
+					a {
+						width: 100%;
+						padding-left: 3em;
+						padding-right: 3em;
+					}
+
+					&.menu-parent > a:after {
+						position: absolute;
+						right: 1em;
+						top: 0.5em;
+						color: white;
+					}
+					.sub-menu {
+						position: relative;
+						left: 0;
+
+						li {
+							padding-left: 0;
+
+							a {
+								padding-left: 4.5em;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

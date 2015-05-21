@@ -1,0 +1,139 @@
+// ==========================================================================
+//
+//  Utilities
+//    Helper functions and mixins
+//
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+//   Hidden  Elements
+// --------------------------------------------------------------------------
+
+.ir,
+.hide-text,
+.text-replace {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+.hide,
+.hidden,
+#wpstats,
+.screen-reader-text  {
+  display: none;
+  visibility: hidden;
+}
+
+@mixin visuallyhidden {
+  position: absolute!important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+@mixin invisible { visibility: hidden }
+
+
+// --------------------------------------------------------------------------
+//   Wordpress specific
+// --------------------------------------------------------------------------
+
+#tinymce {
+  color: #333;
+}
+
+// --------------------------------------------------------------------------
+//   Clearing
+// --------------------------------------------------------------------------
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+html.clearfix { *height: 1% }
+
+
+// --------------------------------------------------------------------------
+//   Vertical Spacing
+// --------------------------------------------------------------------------
+
+.voffset2  { margin-top: 2px; }
+.voffset5 { margin-top: 5px; }
+.voffset10 { margin-top: 10px; }
+.voffset15 { margin-top: 15px; }
+.voffset20 { margin-top: 15px; }
+.voffset30 { margin-top: 30px; }
+.voffset40 { margin-top: 40px; }
+.voffset60 { margin-top: 60px; }
+.voffset80 { margin-top: 80px; }
+.voffset100 { margin-top: 100px; }
+.voffset150 { margin-top: 150px; }
+
+
+// --------------------------------------------------------------------------
+//   Wordpress Specific
+// --------------------------------------------------------------------------
+
+#tinymce { padding: 1em; }
+
+
+// --------------------------------------------------------------------------
+//   Opacity
+// --------------------------------------------------------------------------
+
+@mixin opacity($value){
+	$IEValue: $value*100;
+	opacity: $value;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+	filter: alpha(opacity=$IEValue);
+}
+
+
+// --------------------------------------------------------------------------
+//   Media Mixin
+// --------------------------------------------------------------------------
+
+$default-feature: min-width;
+
+@mixin media($query: $feature $value $columns, $total-columns: $grid-columns) {
+  @if length($query) == 1 {
+    @media screen and ($default-feature: nth($query, 1)) {
+      $default-grid-columns: $grid-columns;
+      $grid-columns: $total-columns !global;
+      @content;
+      $grid-columns: $default-grid-columns !global;
+    }
+  } @else {
+    $loop-to: length($query);
+    $media-query: "screen and ";
+    $default-grid-columns: $grid-columns;
+    $grid-columns: $total-columns !global;
+
+    @if is-not(is-even(length($query))) {
+      $grid-columns: nth($query, $loop-to) !global;
+      $loop-to: $loop-to - 1;
+    }
+
+    $i: 1;
+    @while $i <= $loop-to {
+      $media-query: $media-query + "(" + nth($query, $i) + ": " + nth($query, $i + 1) + ") ";
+
+      @if ($i + 1) != $loop-to {
+        $media-query: $media-query + "and ";
+      }
+
+      $i: $i + 2;
+    }
+
+    @media #{$media-query} {
+      @content;
+      $grid-columns: $default-grid-columns !global;
+    }
+  }
+}

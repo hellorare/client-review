@@ -1,0 +1,150 @@
+// ==========================================================================
+//
+//  Forms
+//		Form elements, plugin styling
+//
+// ==========================================================================
+
+
+// --------------------------------------------------------------------------
+//   Variables
+// --------------------------------------------------------------------------
+
+$form-element-border: 1px solid $base-border-color;
+
+
+// --------------------------------------------------------------------------
+//   Buttons
+// --------------------------------------------------------------------------
+
+@mixin main-button ($colour1: $base-link-color) {
+	display: inline-block;
+	padding: 0.5em 1em;
+	background-color: $colour1;
+	border: 1px solid $colour1;
+	border-radius: $base-border-radius;
+	outline: 0;
+	zoom: 1;
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-drag: none;
+
+	color: white;
+	white-space: nowrap;
+	vertical-align: baseline;
+	text-decoration: none;
+	text-align: center;
+	line-height: normal;
+
+	&:hover {
+		outline: 0;
+		background: $colour1 - #111;
+		border-color: $colour1 - #111;
+	}
+
+	&:active, &.active {
+		outline: 0;
+		box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset,0 0 6px rgba(0,0,0,.2) inset;
+	}
+
+	&.disabled, &[disabled] {
+		background-image: none;
+		@include opacity(0.4);
+		cursor: not-allowed;
+		box-shadow: none;
+	}
+}
+
+
+// --------------------------------------------------------------------------
+//   Generic form elements
+// --------------------------------------------------------------------------
+
+form {
+
+	// ----- Remove default styling ----- //
+
+	ul, ol, li {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	label {
+		font-weight: 600;
+	}
+}
+
+// ----- Buttons ----- //
+
+.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+	@include main-button;
+}
+
+// ----- Input types ----- //
+
+#{$all-text-inputs},
+textarea,
+select {
+	max-width: 100%;
+  border: $form-element-border;
+  padding: 5px 10px;
+  font-weight: normal;
+
+  &.medium {
+	  width: 48%;
+  }
+  &.large {
+	  width: 100%;
+  }
+}
+
+#{$all-text-inputs-hover},
+textarea,
+select {
+  background: white;
+}
+
+#{$all-text-inputs-focus},
+textarea,
+select {
+  background: white;
+}
+
+textarea.medium {
+	height: 100px;
+}
+
+textarea.large {
+	height: 150px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	margin-right: 10px;
+}
+
+
+// --------------------------------------------------------------------------
+//   Search form
+// --------------------------------------------------------------------------
+
+.search-form {
+
+	> label {
+		position: relative;
+		display: inline-block;
+		width: 58%;
+
+		.search-field {
+			padding: 0.5em 1em 0.5em 2em;
+		}
+	}
+
+	.search-submit {
+		width: 40%;
+		display: inline-block;
+	}
+}

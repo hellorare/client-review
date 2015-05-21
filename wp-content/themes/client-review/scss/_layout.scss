@@ -1,0 +1,147 @@
+// ==========================================================================
+//
+//  Layout
+//    Primary stylesheet
+//
+// ==========================================================================
+
+* {
+  @include box-sizing(border-box);
+}
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+html {
+	background-color: $brown;
+	overflow-x: hidden;
+}
+
+html.no-touch {
+	overflow-y: auto;
+}
+
+body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	margin: 0;
+	@include clearfix;
+
+	&.admin-bar {
+		padding-top: 32px;
+	}
+}
+
+#page-wrapper {
+	position: relative;
+	width: 100%;
+	margin-top: 200px;
+}
+
+@mixin center {
+	@include container-fixed;
+
+	@media (min-width: $screen-sm-min) {
+	  width: $container-sm;
+	}
+	@media (min-width: $screen-md-min) {
+	  width: $container-md + 50px;
+	}
+	@media (min-width: $screen-lg-min) {
+	  width: $container-lg;
+	}
+}
+
+// --------------------------------------------------------------------------
+//   Loading Spinner
+// --------------------------------------------------------------------------
+
+.loading-spinner-container {
+	height: 160px;
+}
+
+
+// --------------------------------------------------------------------------
+//   Sections
+// --------------------------------------------------------------------------
+
+.wrapper {
+	display: block;
+	position: relative;
+
+	.section {
+		@include center;
+
+		.section-content {
+			@include make-row();
+		}
+	}
+}
+
+
+// --------------------------------------------------------------------------
+//   Header
+// --------------------------------------------------------------------------
+
+#header-wrapper {
+
+	img {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.dashboard-link {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 20px;
+	}
+
+	.user-name {
+		float: right;
+		color: $yellow;
+	}
+}
+
+
+// --------------------------------------------------------------------------
+//   Login Form
+// --------------------------------------------------------------------------
+
+#login-form-wrapper {
+	margin: 80px 0;
+}
+
+// --------------------------------------------------------------------------
+//   Concept Thumbs
+// --------------------------------------------------------------------------
+
+.concept-card {
+	height: 300px;
+
+	.panel-heading {
+		min-height: 60px;
+	}
+}
+
+[class*='concept-body-'] {
+	height: 200px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+// --------------------------------------------------------------------------
+//   Storyboards
+// --------------------------------------------------------------------------
+
+.storyboard-image {
+	line-height: 1;
+	margin-right: 20px;
+	margin-bottom: 10px;
+
+	cursor: pointer;
+}

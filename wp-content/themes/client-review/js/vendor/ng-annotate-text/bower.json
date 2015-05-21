@@ -1,0 +1,34 @@
+{
+  "name": "ng-annotate-text",
+  "version": "2.5.1",
+  "homepage": "https://github.com/DigiExam/ng-annotate-text",
+  "authors": [
+    "(Rasmus Milesson <rasmus.milesson@arcadelia.com>)",
+    "(Robin Andersson <robin.andersson@digiexam.se>)",
+    "(Kenneth Sundqvist <kenneth.sundqvist@digiexam.se>)"
+  ],
+  "description": "An AngularJS directive to assist with annotation of text",
+  "keywords": [
+    "angularjs",
+    "annotation"
+  ],
+  "license": "CC-BY-NC",
+  "private": true,
+  "main": [
+    "./dist/ng-annotate-text-latest.min.css",
+    "./dist/ng-annotate-text-latest.min.js"
+  ],
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "example-app",
+    "dev",
+    "/css/",
+    "/js/"
+  ],
+  "dependencies": {
+    "angular": "~1.2.6"
+  }
+}
