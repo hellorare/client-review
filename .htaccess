@@ -1,0 +1,18 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /client-review/
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^style.css /client-review/wp-content/themes/client-review/style.css [QSA,L]
+RewriteRule ^js/(.*) /client-review/wp-content/themes/client-review/js/$1 [QSA,L]
+RewriteRule ^images/(.*) /client-review/wp-content/themes/client-review/images/$1 [QSA,L]
+RewriteRule ^fonts/(.*) /client-review/wp-content/themes/client-review/fonts/$1 [QSA,L]
+RewriteRule ^favicon.ico /client-review/wp-content/themes/client-review/images/favicon.ico [QSA,L]
+RewriteRule ^humans.txt /client-review/wp-content/themes/client-review/humans.txt [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /client-review/index.php [L]
+</IfModule>
+
+# END WordPress
